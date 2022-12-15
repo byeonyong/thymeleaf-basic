@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML !DOCTYPE declaration</title>
+</head>
+<body>
+
+<h1>컨텐츠에 데이터 출력하기</h1>
+<ul>
+    <li>th:text 사용 <span th:text="${data}"></span> </li>
+    <li>th:utext 사용 <span th:utext="${data}"></span> </li>
+
+    <h1><span>[[${변수}]] vs [(${변수})]</span></h1>
+
+    <li>컨텐츠 안에서 직접 출력하기 text = [[${data}]]</li>
+    <li>컨텐츠 안에서 직접 출력하기 utext = [(${data})]</li>
+</ul>
+    <h1>지역 변수 - (th:with)</h1>
+    <div th:with="first=${users[0]}"> <!-- thymeleaf로 지역변수 설정하는 방법 -->
+        <p>처음 사람의 이름은 <span th:text="${first.username}"></span></p>
+    </div>
+</body>
+</html>
