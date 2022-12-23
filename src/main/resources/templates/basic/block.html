@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--/*-->
+아래 코드는 div를 묶기 위해서 사용. div에 each를 쓰고싶은데 그러면
+@@@@@@@@@ result -->
+사용자이름 사용자나이
+사용자이름 사용자나이
+사용자이름 사용자나이
+요약
+요약
+요약
+@@@@@@@@@
+이런식으로 출력이 되기 때문에 div가 여러개일때
+
+사용자이름 사용자나이
+요약
+사용자이름 사용자나이
+요약
+사용자이름 사용자나이
+요약
+
+처럼 출력하고 싶으면 block 으로 묶어줘야함
+<!--*/-->
+<th:block th:each="user : ${users}">
+    <div>
+        사용자 이름1 <span th:text="${user.username}"></span>
+        사용자 나이1 <span th:text="${user.age}"></span>
+    </div>
+    <div>
+        요약 <span th:text="${user.username} + ' / ' + ${user.age}"></span>
+    </div>
+</th:block>
+</body>
+</html>
