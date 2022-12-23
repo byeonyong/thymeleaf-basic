@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML !DOCTYPE declaration</title>
+</head>
+<body>
+
+<h1>식 기본 객체 (Expression Basic Objects)</h1>
+<ul>
+<!--  변수명.request 이렇게 안넘겨도 대네 -->
+    <li>request = <span th:text="${#request}"></span></li>
+    <li>response = <span th:text="${#response}"></span></li>
+    <li>session = <span th:text="${#session}"></span></li>
+    <li>servletContext = <span th:text="${#servletContext}"></span></li>
+    <li>locale = <span th:text="${#locale}"></span></li>
+</ul>
+<h1>편의 객체</h1>
+<ul>
+<!-- 1. 타임리프에서 기본으로 제공하는 param paramdata.helloparam
+     2. 세션데이터 가져오는방법(session.sessionData)
+     3. spring @helloBean Bean에 hello 메소드를 가져온것 -->
+    <li>Request Parameter = <span th:text="${param.paramData}"></span></li>
+    <li>session = <span th:text="${session.sessionData}"></span></li>
+    <li>spring bean = <span th:text="${@helloBean.hello('Spring!')}"></span></li>
+</ul>
+
+</body>
+</html>
