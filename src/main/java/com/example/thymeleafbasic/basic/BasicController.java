@@ -1,11 +1,13 @@
 package com.example.thymeleafbasic.basic;
 
+import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -19,12 +21,23 @@ import java.util.Map;
 @RequestMapping("/basic")
 public class BasicController {
 
+
     @GetMapping("text-basic")
-    public String textBasic(Model model){
+    public String gettextBasic(Model model){
         model.addAttribute("data","<b>hello spring</b>");
         return "/basic/text-basic";
     }
+    // value값 defaul
+    // notes는 method name
 
+    @ApiResponses({
+            @ApiResponse(code=200, message = "로그인성공"),
+            @ApiResponse(code=400, message = "잘못된접근"),
+            @ApiResponse(code=404, message = "페이지가 존재하지않음"),
+            @ApiResponse(code=500, message = "서버 에러"),
+    })
+    @ApiOperation(value="이스케이프 적용", notes="th:text , th:utext에서 text-unescaped의 차이를 알아보는 api")
+    @ApiImplicitParam(name="Model" , value="html단으로 넘길 정보", required = false, dataType="Model")
     @GetMapping("text-unescaped")
     public String unescaped(Model model){
         model.addAttribute("data","<b>hello spring</b>");
@@ -141,7 +154,12 @@ public class BasicController {
     @Data
     @AllArgsConstructor
     public class User {
+
+//        DTO에 대한 정보를 나타내주는 어노테이션인듯 ? 한번 사용해보긴해야함, MODEL이 아닌 ~DTO를 받는 메소드를 하나 만들어서
+        @ApiModelProperty(example="사용자이름")
         private String username;
+
+        @ApiModelProperty(example = "나이")
         private int age;
 
     }
